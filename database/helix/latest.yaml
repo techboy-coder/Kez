@@ -1,0 +1,18 @@
+---
+recipe:
+    name: helix
+    description: Helix - a post-modern modal text editor written in Rust
+    type: package
+
+    source:
+        type: tarball
+        releases:
+            - version: 25.07.1
+              url: https://github.com/helix-editor/helix/releases/download/25.07.1/helix-25.07.1-${kez.arch}-linux.tar.xz
+
+    build:
+        postprocessing: |-
+            mkdir -p ${helix.prefix}/bin ${helix.prefix}/lib/helix
+            cp hx ${helix.prefix}/lib/helix/
+            cp -r runtime ${helix.prefix}/lib/helix/
+            ln -sf ../lib/helix/hx ${helix.prefix}/bin/hx
